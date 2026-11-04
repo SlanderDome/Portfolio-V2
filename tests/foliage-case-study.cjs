@@ -93,10 +93,57 @@ const server = http.createServer((req,res) => {
     await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('.fc-viewer').open);
     await page.locator('[data-project="judgement"] .project-open').focus();
     await page.keyboard.press('Enter');
-    assert.equal(await page.locator('#caseStudy').evaluate(el=>el.open),true);
-    assert.equal(await page.locator('.fc-viewer').evaluate(el=>el.open),false);
+    assert.equal(await page.locator('.fc-viewer').evaluate(el=>el.open && el.dataset.project==='judgement'),true);
+    assert.equal(await page.locator('#caseStudy').evaluate(el=>el.open),false);
+    await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('.fc-viewer').open);
+    for(const [project,total] of [['judgement',7],['reconcile',6]]) {
+      for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844],[360,800]]) {
+        await page.setViewportSize({width,height});
+        await page.goto(base+`/?ref=deck&project=${project}&slide=1#work`);
+        await page.emulateMedia({reducedMotion:'no-preference'});
+        for(let slide=1;slide<=total;slide++) {
+          if(slide>1)await page.locator('.fc-next').click();
+          await page.waitForTimeout(650);
+          assert.equal(await page.locator('.fc-viewer').getAttribute('data-project'),project);
+          assert.equal(new URL(page.url()).searchParams.get('slide'),String(slide));
+          const metrics=await stage.evaluate(el=>({width:el.clientWidth,scroll:el.scrollWidth}));
+          assert.ok(metrics.scroll<=metrics.width+1,`${project} overflow at ${width}px slide ${slide}`);
+          assert.ok(await stage.locator('img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)));
+          if(width===1440||width===390)await page.screenshot({path:path.join(output,`${project}-${width}-${slide}.png`)});
+        }
+        assert.ok(await page.locator('.fc-next').isDisabled());
+        await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('.fc-viewer').open);
+        assert.equal(new URL(page.url()).searchParams.get('project'),null);
+        assert.equal(new URL(page.url()).searchParams.get('ref'),'deck');
+      }
+    }
+    await page.goto(base+'/?project=judgement&slide=2');
+    await page.locator('.jd-deal-toggle').click();
+    assert.equal(await page.locator('.jd-deal-toggle').getAttribute('aria-pressed'),'true');
+    await page.locator('.fc-next').click();
+    await page.goBack();
+    assert.equal(new URL(page.url()).searchParams.get('slide'),'2');
+    await page.goForward();assert.equal(new URL(page.url()).searchParams.get('slide'),'3');
+    await page.goto(base+'/?project=reconcile&slide=4');
+    for(const sample of ['duplicate','rounding','refund','timing']) {
+      await page.locator(`[data-match="${sample}"]`).click();
+      assert.equal(await page.locator(`[data-match="${sample}"]`).getAttribute('aria-pressed'),'true');
+      assert.ok((await page.locator('.rc-sample-result').textContent()).length>80);
+    }
+    await page.goto(base+'/?project=reconcile&slide=99');
+    assert.equal(new URL(page.url()).searchParams.get('slide'),'6');
+    await page.goto(base+'/?project=reconcile&slide=1');
+    await page.evaluate(()=>{for(let i=0;i<5;i++)document.querySelector('.fc-next').click();});
+    await page.waitForTimeout(650);assert.equal(await stage.count(),1);
+    assert.equal(new URL(page.url()).searchParams.get('slide'),'6');
+    await page.goto(base+'/');
+    await page.locator('[data-project="judgement"] .project-open').click();
+    assert.equal(new URL(page.url()).searchParams.get('project'),'judgement');
+    await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('.fc-viewer').open);
+    await page.locator('[data-project="reconcile"] .project-open').click();
+    assert.equal(new URL(page.url()).searchParams.get('project'),'reconcile');
     assert.deepEqual(errors,[]);
-    console.log('PASS: seven slides, history, focus, scan interaction, rapid input, five viewport sizes, assets, reduced motion, existing Judgement case study.');
+    console.log('PASS: all 20 slides, three project themes, history, focus, optional interactions, rapid input, five viewport sizes, images, reduced motion and portfolio project controls.');
     console.log('Screenshots: '+output);
   } finally {await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

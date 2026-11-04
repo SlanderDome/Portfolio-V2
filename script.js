@@ -71,7 +71,7 @@ const cases = {
 const dialog = document.querySelector('#caseStudy');
 const caseContent = dialog.querySelector('.case-content');
 const openCase = key => {
-  if (key === 'foliage') { window.foliageCaseStudy.open(document.activeElement); return; }
+  if (window.portfolioCaseStudy) { window.portfolioCaseStudy.open(key, document.activeElement); return; }
   const item = cases[key];
   caseContent.innerHTML = `<p class="case-type">${item.label}</p><div><h2>${item.title}</h2><p>${item.copy}</p></div><img class="case-screenshot" src="${item.image}" alt="${item.alt}"><div class="case-facts">${item.facts.map(fact => `<span>${fact}</span>`).join('')}</div><a class="case-action magnetic" href="${item.href}" target="_blank" rel="noreferrer">${item.action} <b>↗</b></a>`;
   dialog.showModal();

@@ -9,13 +9,15 @@
   const head = (n, label, title, text = '') => `<header class="fc-heading"><p class="fc-eyebrow">Field notes / ${n} — ${label}</p><h2 tabindex="-1">${title}</h2>${text ? `<p class="fc-intro">${text}</p>` : ''}</header>`;
   const slides = [
     { name: 'Opening poster', dark: true, className: 'fc-poster', html: `${head('01', 'Plant intelligence', 'Foliage<br><em>Care.</em>')}<div class="fc-poster-side"><p>From a photograph<br>to a better next step.</p><span>COMPUTER VISION / WEB PRODUCT<br>DESIGNED & BUILT BY SWAROM</span></div>${photo(landing, 'Foliage Care landing interface with consultation and care-plan introduction', '01.1 / The live plant wellness companion · authentic product screen')}<p class="fc-margin-note">A study in making plant-health guidance more visible, local, and conversational.</p>` },
-    { name: 'The problem', dark: false, className: 'fc-problem', html: `${head('02', 'The question', 'A symptom is<br>only the <em>start.</em>', 'Recognizing a problem is one step. Knowing what to do next is another.')}<figure class="fc-specimen">${leaf}<figcaption>Fig. A / Specimen study · illustrative botanical diagram</figcaption></figure><ol class="fc-observations"><li><span>01 / SEE</span><p>Symptoms need explanation, not just a disease label.</p></li><li><span>02 / ACT</span><p>Advice needs to reflect the grower’s role and context.</p></li><li><span>03 / RETURN</span><p>A consultation should continue beyond the first answer.</p></li></ol>` },
-    { name: 'Consultation flow', dark: false, className: 'fc-flow-slide', html: `${head('03', 'The experience', 'One consultation.<br>Four <em>movements.</em>')}<ol class="fc-flow"><li><span>01</span><i aria-hidden="true">⌕</i><h3>Diagnose</h3><p>Upload a photograph. Receive a structured symptom report and affected-region coordinates.</p></li><li><span>02 / OPTIONAL</span><i aria-hidden="true">◷</i><h3>Simulate</h3><p>Explore an illustrative seven-day untreated progression. A visualization, not a forecast.</p></li><li><span>03</span><i aria-hidden="true">↗</i><h3>Prescribe</h3><p>Start with household and organic options; reserve chemical interventions for last consideration.</p></li><li><span>04</span><i aria-hidden="true">↔</i><h3>Consult</h3><p>Ask follow-up questions grounded in the diagnosis, with multilingual responses.</p></li></ol><p class="fc-footnote">The journey is sequential. The progression image is optional. The conversation remains open.</p>` },
-    { name: 'Visual evidence', dark: true, className: 'fc-evidence', html: `${head('04', 'Visible reasoning', 'Make the evidence<br><em>inspectable.</em>', 'A source-derived schematic of the response structure. This is an illustration, not a captured diagnosis.')}<div class="fc-evidence-layout"><figure class="fc-specimen fc-scan-specimen">${leaf}<span class="fc-scan-beam" aria-hidden="true"></span><figcaption>Fig. B / Illustrative regions · no real diagnosis shown</figcaption></figure><div class="fc-response"><span class="fc-eyebrow">IMAGE → STRUCTURED REPORT</span><dl><div><dt>Identification</dt><dd>Plant & disease labels</dd></div><div><dt>Evidence</dt><dd>Visual symptoms & severity</dd></div><div class="fc-coordinate"><dt>Affected regions</dt><dd>Coordinate-based overlays</dd></div><div><dt>Next steps</dt><dd>Actionable care guidance</dd></div></dl><button class="fc-scan-toggle" type="button" aria-pressed="false">Inspect affected regions <span aria-hidden="true">+</span></button><p class="fc-footnote">Optional interaction / reveal the schematic annotation layer.</p></div></div>` },
-    { name: 'System architecture', dark: false, className: 'fc-architecture', html: `${head('05', 'Under the canopy', 'A connected<br><em>care system.</em>')}<div class="fc-network" role="img" aria-label="Architecture: Open-Meteo sends weather to the browser. Browser calls FastAPI, which routes to AI providers and Hugging Face. Browser uses Firebase for authentication and history."><svg class="fc-connectors" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"><path d="M100 60V180H360M100 180V305H360M360 180H640M640 180V60H900M640 180H900M640 180V305H900"/></svg><div class="fc-node fc-weather"><span>01 / CONTEXT</span><h3>Open-Meteo</h3><p>Location & weather retrieval</p></div><div class="fc-node fc-browser"><span>02 / CLIENT</span><h3>Browser</h3><p>Vanilla JavaScript · Leaflet</p></div><div class="fc-node fc-firebase"><span>03 / PERSISTENCE</span><h3>Firebase</h3><p>Authentication · Firestore history</p></div><div class="fc-node fc-api"><span>04 / REST</span><h3>FastAPI</h3><p>Diagnosis · plans · follow-up</p></div><div class="fc-node fc-models"><span>05 / CONSULTATION</span><h3>AI providers</h3><p>Gemini → Groq → OpenAI</p></div><div class="fc-node fc-prompt"><span>06 / SIMULATION PROMPT</span><h3>Gemini</h3><p>Context-to-image prompt</p></div><div class="fc-node fc-hf"><span>07 / IMAGE GENERATION</span><h3>Hugging Face</h3><p>SD 1.5 → FLUX.1 → SD 1.5</p></div></div><p class="fc-footnote">Source note / weather retrieval exists; the diagnosis request’s weather field is not yet consistently wired end to end.</p>` },
-    { name: 'Engineering depth', dark: true, className: 'fc-engineering', html: `${head('06', 'Engineering notes', 'Careful choices.<br>Honest <em>boundaries.</em>')}<div class="fc-engineering-layout"><div class="fc-lanes"><section><span>01 / RESILIENCE</span><h3>More than one route.</h3><p>Consultation can fall back across configured Gemini, Groq, and OpenAI engines.</p></section><section><span>02 / CONTEXT</span><h3>Advice has an audience.</h3><p>Distinct prompts for farmers, nursery operators, home gardeners, and students or researchers.</p></section><section><span>03 / CONTINUITY</span><h3>A scan becomes a record.</h3><p>Firebase Authentication and Firestore support plant records, scan history, and My Garden.</p></section><section><span>04 / OPTIONAL GENERATION</span><h3>Visualize a possibility.</h3><p>Stable Diffusion image-to-image → FLUX.1-schnell → Stable Diffusion text-to-image.</p></section></div><aside class="fc-source-rail"><span class="fc-eyebrow">SOURCE NOTES</span><p>Provider fallback requires configured credentials and service availability.</p><p>Progression images are illustrations, not validated scientific forecasts.</p><p>Diagnosis sends <code>weather_trend</code>; the API expects <code>weather</code>. Weather-aware diagnosis remains an integration limitation.</p><p>AI advice supports decisions. It does not replace a qualified plant-health assessment.</p></aside></div>` },
+    { name: 'The problem', dark: false, className: 'fc-problem', html: `${head('02', 'The question', 'A symptom is<br>only the <em>start.</em>', 'A balcony gardener notices a leaf changing overnight. A nursery operator sees the same symptom across a batch. The product starts with the same photograph, but the next useful answer is different.')}<figure class="fc-specimen">${leaf}<figcaption>Fig. A / Specimen study · illustrative botanical diagram</figcaption></figure><ol class="fc-observations"><li><span>01 / SEE</span><p>A name alone is not enough. Visual evidence and affected regions help a grower understand the answer.</p></li><li><span>02 / ACT</span><p>A farmer needs field-scale decisions; a home gardener needs practical steps. Role-specific prompts frame the response.</p></li><li><span>03 / RETURN</span><p>Follow-up questions, saved scans, and My Garden turn one diagnosis into an ongoing care record.</p></li></ol>` },
+    { name: 'Consultation flow', dark: false, className: 'fc-flow-slide', html: `${head('03', 'The experience', 'One consultation.<br>Four <em>movements.</em>')}<ol class="fc-flow"><li><span>01</span><i aria-hidden="true">⌕</i><h3>Diagnose</h3><p>Upload a photograph through /predict. The structured report includes plant and disease labels, severity, confidence, visual evidence, and affected-region coordinates.</p></li><li><span>02 / OPTIONAL</span><i aria-hidden="true">◷</i><h3>Simulate</h3><p>Explore an illustrative seven-day untreated progression. A visualization, not a forecast.</p></li><li><span>03</span><i aria-hidden="true">↗</i><h3>Prescribe</h3><p>Request an image-aware plan through /get_expert_plan. India-focused tiers move from household care to organic controls and chemical options as a last resort.</p></li><li><span>04</span><i aria-hidden="true">↔</i><h3>Consult</h3><p>Use /followup to ask what comes next. The active diagnosis and a short conversation history ground multilingual answers.</p></li></ol><p class="fc-footnote">The journey is sequential. The progression image is optional. The conversation remains open.</p>` },
+    { name: 'Visual evidence', dark: true, className: 'fc-evidence', html: `${head('04', 'Visible reasoning', 'Make the evidence<br><em>inspectable.</em>', 'An illustrated look at the diagnostic response: connect the visible symptom to its location, explanation, and next action.')}<div class="fc-evidence-layout"><figure class="fc-specimen fc-scan-specimen">${leaf}<span class="fc-scan-beam" aria-hidden="true"></span><figcaption>Fig. B / Diagnostic response schematic</figcaption></figure><div class="fc-response"><span class="fc-eyebrow">IMAGE → STRUCTURED REPORT</span><dl><div><dt>Identification</dt><dd>Plant & disease labels</dd></div><div><dt>Evidence</dt><dd>Visual symptoms & severity</dd></div><div class="fc-coordinate"><dt>Affected regions</dt><dd>Coordinate-based overlays</dd></div><div><dt>Next steps</dt><dd>Actionable care guidance</dd></div></dl><button class="fc-scan-toggle" type="button" aria-pressed="false">Inspect affected regions <span aria-hidden="true">+</span></button><p class="fc-footnote">Optional interaction / reveal the schematic annotation layer.</p></div></div>` },
+    { name: 'System architecture', dark: false, className: 'fc-architecture', html: `${head('05', 'Under the canopy', 'A connected<br><em>care system.</em>')}<div class="fc-network" role="img" aria-label="Architecture: Open-Meteo sends weather to the browser. Browser calls FastAPI, which routes to AI providers and Hugging Face. Browser uses Firebase for authentication and history."><svg class="fc-connectors" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"><path d="M100 60V180H360M100 180V305H360M360 180H640M640 180V60H900M640 180H900M640 180V305H900"/></svg><div class="fc-node fc-weather"><span>01 / CONTEXT</span><h3>Open-Meteo</h3><p>Location & weather retrieval</p></div><div class="fc-node fc-browser"><span>02 / CLIENT</span><h3>Browser</h3><p>Vanilla JavaScript · Leaflet</p></div><div class="fc-node fc-firebase"><span>03 / PERSISTENCE</span><h3>Firebase</h3><p>Authentication · Firestore history</p></div><div class="fc-node fc-api"><span>04 / REST</span><h3>FastAPI</h3><p>Diagnosis · plans · follow-up</p></div><div class="fc-node fc-models"><span>05 / CONSULTATION</span><h3>AI providers</h3><p>Gemini → Groq → OpenAI</p></div><div class="fc-node fc-prompt"><span>06 / SIMULATION PROMPT</span><h3>Gemini</h3><p>Context-to-image prompt</p></div><div class="fc-node fc-hf"><span>07 / IMAGE GENERATION</span><h3>Hugging Face</h3><p>SD 1.5 → FLUX.1 → SD 1.5</p></div></div><p class="fc-footnote">Four REST endpoints connect the consultation: /predict · /simulate · /get_expert_plan · /followup. Firebase preserves the plant’s story between visits.</p>` },
+    { name: 'Engineering depth', dark: true, className: 'fc-engineering', html: `${head('06', 'Engineering notes', 'A living record.<br>A resilient <em>system.</em>')}<div class="fc-engineering-layout"><div class="fc-lanes"><section><span>01 / RESILIENCE</span><h3>More than one route.</h3><p>An auto-routing consultation path tries configured Gemini, Groq, and OpenAI engines in sequence. A consistent report format keeps the frontend independent of the provider.</p></section><section><span>02 / CONTEXT</span><h3>Advice has an audience.</h3><p>Four prompt personas change the diagnostic emphasis and remedy priorities: field-scale action, nursery hygiene, household care, or research-oriented reasoning.</p></section><section><span>03 / CONTINUITY</span><h3>A scan becomes a record.</h3><p>Firebase Authentication connects a grower to Firestore plant records, scan history, and My Garden. With location permission, community reports can populate a Leaflet map.</p></section><section><span>04 / OPTIONAL GENERATION</span><h3>Visualize a possibility.</h3><p>Stable Diffusion image-to-image → FLUX.1-schnell → Stable Diffusion text-to-image.</p></section></div><aside class="fc-source-rail"><span class="fc-eyebrow">DESIGN INTENT</span><p>Provider fallback requires configured credentials and service availability.</p><p>Progression images are illustrations, not validated scientific forecasts.</p><p>The browser handles images and location consent; FastAPI orchestrates model calls and shapes their outputs into a report the interface can explain.</p><p>AI advice supports decisions. It does not replace a qualified plant-health assessment.</p></aside></div>` },
     { name: 'Closing statement', dark: false, className: 'fc-closing', html: `${head('07', 'Keep growing', 'Better questions.<br>More thoughtful<br><em>plant care.</em>')}<div class="fc-closing-image">${photo(diagnose, 'Authentic Foliage Care consultation entry screen', '07.1 / Consultation entry · authentic product screen')}</div><div class="fc-closing-copy"><p>Built to connect observation, explanation, and the next useful action.</p><p class="fc-tech">PYTHON · FASTAPI · JAVASCRIPT<br>GEMINI · FIREBASE · LEAFLET · HUGGING FACE</p><div class="fc-closing-links"><a href="${live}" target="_blank" rel="noreferrer">Explore the product ↗</a><a href="${github}" target="_blank" rel="noreferrer">Read the source ↗</a></div></div>` }
   ];
+  const decks = {...window.portfolioDecks, foliage: {name:'Foliage Care', number:'01', journal:'FIELD JOURNAL', mark:'✳', github, live, slides}};
+  let projectKey = 'foliage', deck = decks.foliage;
   const dialog = document.createElement('dialog');
   dialog.className = 'fc-viewer';
   dialog.setAttribute('aria-label', 'Foliage Care case study');
@@ -43,26 +45,27 @@
       animate(old, reduced.matches ? [{opacity:1},{opacity:0}] : [{opacity:1,transform:'translateX(0)'},{opacity:0,transform:`translateX(${forward ? '-6vw' : '6vw'})`}], 420).finished.then(() => old.remove()).catch(() => old.remove());
     }
     index = to;
-    const data = slides[index];
+    const data = deck.slides[index];
     const slide = document.createElement('section');
     slide.className = `fc-slide ${data.className} ${data.dark ? 'fc-dark' : 'fc-light'}`;
-    slide.setAttribute('aria-label', `${index + 1} of 7: ${data.name}`);
+    slide.setAttribute('aria-label', `${index + 1} of ${deck.slides.length}: ${data.name}`);
     slide.innerHTML = data.html; stage.append(slide);
     animate(slide, reduced.matches ? [{opacity:0},{opacity:1}] : [{opacity:0,transform:`translateX(${forward ? '6vw' : '-6vw'})`},{opacity:1,transform:'translateX(0)'}], 420);
     slide.querySelectorAll('.fc-heading,.fc-intro,.fc-photo,.fc-specimen,.fc-flow,.fc-network,.fc-engineering-layout,.fc-closing-copy').forEach((el, i) => animate(el, reduced.matches ? [{opacity:0},{opacity:1}] : [{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}], 460, [0,70,110,170,220][Math.min(i,4)]));
     slide.querySelectorAll('.fc-node').forEach((node, i) => animate(node, [{opacity:0},{opacity:1}],420,i * 80));
+    if (deck.enhance) deck.enhance(slide, {animate, reduced});
     const scan = slide.querySelector('.fc-scan-toggle');
     if (scan) scan.addEventListener('click', () => {
       const on = scan.getAttribute('aria-pressed') !== 'true';
       scan.setAttribute('aria-pressed', String(on)); slide.classList.toggle('fc-inspecting', on);
       scan.innerHTML = `${on ? 'Hide' : 'Inspect'} affected regions <span aria-hidden="true">${on ? '−' : '+'}</span>`;
     });
-    dialog.querySelector('.fc-count').textContent = `${String(index + 1).padStart(2,'0')} / 07`;
+    dialog.querySelector('.fc-count').textContent = `${String(index + 1).padStart(2,'0')} / ${String(deck.slides.length).padStart(2,'0')}`;
     dialog.querySelector('.fc-slide-name').textContent = data.name;
-    dialog.querySelector('.fc-progress span').style.transform = `scaleX(${(index + 1) / 7})`;
+    dialog.querySelector('.fc-progress span').style.transform = `scaleX(${(index + 1) / deck.slides.length})`;
     dialog.querySelector('.fc-progress').setAttribute('aria-valuenow', String(index + 1));
-    prev.disabled = index === 0; next.disabled = index === 6;
-    dialog.querySelector('.fc-live-region').textContent = `Slide ${index + 1} of 7. ${data.name}`;
+    prev.disabled = index === 0; next.disabled = index === deck.slides.length - 1;
+    dialog.querySelector('.fc-live-region').textContent = `Slide ${index + 1} of ${deck.slides.length}. ${data.name}`;
     slide.querySelector('h2').focus({preventScroll:true});
   }
   function show(to) {
@@ -91,10 +94,21 @@
   }
   function readRoute() {
     const url = new URL(location.href), project = url.searchParams.get('project');
-    if (project === 'foliage') {
+    if (decks[project]) {
+      if(projectKey !== project) {
+        projectKey = project; deck = decks[project]; index = -1;
+        active.forEach(a=>a.cancel()); active=[];
+        stage.replaceChildren();
+      }
+      dialog.dataset.project = project;
+      dialog.setAttribute('aria-label', deck.name + ' case study');
+      dialog.querySelector('.fc-brand').innerHTML = `<span class="fc-brand-mark" aria-hidden="true">${deck.mark}</span><span>${deck.name}<small>${deck.journal} / CASE STUDY ${deck.number}</small></span>`;
+      dialog.querySelector('.fc-chrome nav').innerHTML = `<a href="${deck.github}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${deck.live}" target="_blank" rel="noreferrer">Live ↗</a>`;
+      dialog.querySelector('.fc-close').setAttribute('aria-label','Close ' + deck.name + ' case study');
+      dialog.querySelector('.fc-progress').setAttribute('aria-valuemax',String(deck.slides.length));
       const raw = url.searchParams.get('slide');
       const value = Number(raw);
-      const slide = Number.isFinite(value) ? Math.max(1,Math.min(7,Math.trunc(value))) : 1;
+      const slide = Number.isFinite(value) ? Math.max(1,Math.min(deck.slides.length,Math.trunc(value))) : 1;
       if (raw !== String(slide)) { url.searchParams.set('slide',String(slide)); history.replaceState(history.state,'',url); }
       const state = history.state?.foliageDeck;
       depth = state?.session === session ? state.depth : 0;
@@ -105,12 +119,12 @@
     }
   }
   function navigate(to) {
-    if (closingRoute || to < 0 || to > 6 || to === index) return;
+    if (closingRoute || to < 0 || to >= deck.slides.length || to === index) return;
     const url = new URL(location.href);
-    url.searchParams.set('project','foliage'); url.searchParams.set('slide',String(to + 1));
+    url.searchParams.set('project',projectKey); url.searchParams.set('slide',String(to + 1));
     if (!session) session = `${Date.now()}-${Math.random()}`;
     history.pushState({...history.state,foliageDeck:{session,depth:++depth}},'',url);
-    show(to);
+    readRoute();
   }
   function close() {
     if (closingRoute) return;
@@ -122,13 +136,15 @@
       history.replaceState(state,'',url); hide();
     }
   }
-  window.foliageCaseStudy = {open(control) {
-    trigger = control?.closest?.('[data-project="foliage"]')?.querySelector('.project-open') || document.querySelector('[data-project="foliage"] .project-open');
-    if (dialog.open) return;
+  window.portfolioCaseStudy = {open(key, control) {
+    if (!decks[key] || dialog.open) return;
+    projectKey = key; deck = decks[key]; index = -1;
+    trigger = control?.closest?.('[data-project]')?.querySelector('.project-open') || document.querySelector(`[data-project="${key}"] .project-open`);
     hasPortfolioOrigin = true;
     session = `${Date.now()}-${Math.random()}`; depth = 0;
     navigate(0);
   }};
+  window.foliageCaseStudy = {open: control => window.portfolioCaseStudy.open('foliage', control)};
   prev.addEventListener('click', () => navigate(index - 1));
   next.addEventListener('click', () => navigate(index + 1));
   dialog.querySelector('.fc-close').addEventListener('click', close);
