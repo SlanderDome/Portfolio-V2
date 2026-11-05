@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1584, initial-scale=1">
+  <title>Swarom Firagannavar — LinkedIn banner artwork</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1584px; height: 396px; overflow: hidden; }
+    body { background: #f1eee6; color: #151515; font-family: 'DM Sans', sans-serif; }
+    .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; }
+    .art { position: absolute; top: -117px; right: -8px; width: 1200px; height: 630px; }
+    header { position: absolute; top: 32px; left: 330px; right: 34px; display: flex; align-items: center; }
+    .monogram { font-size: 32px; font-weight: 700; letter-spacing: -3px; }
+    .monogram span { color: #bd1f3a; }
+    .identity { margin-left: 22px; padding-left: 22px; border-left: 1px solid #15151544; }
+    .name { font-size: 18px; font-weight: 600; letter-spacing: -.5px; }
+    .role { margin-top: 5px; font: 9px 'DM Mono', monospace; letter-spacing: 1.8px; text-transform: uppercase; }
+    .name-label { font: 500 12px 'DM Mono', monospace; letter-spacing: 1.5px; }
+    .kicker { position: absolute; left: 333px; top: 110px; margin: 0; font: 9px 'DM Mono', monospace; letter-spacing: 2px; text-transform: uppercase; }
+    .kicker::before { content: ''; display: inline-block; width: 7px; height: 7px; background: #bd1f3a; border-radius: 50%; margin-right: 10px; }
+    h1 { position: absolute; left: 326px; top: 128px; margin: 0; font-size: 72px; line-height: 1.04; letter-spacing: -4px; font-weight: 700; }
+    h1 em { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -3px; }
+    .intro { position: absolute; top: 291px; left: 333px; margin: 0; font-size: 17px; line-height: 1.5; letter-spacing: -.25px; color: #484840; }
+    .intro br { display: none; }
+    footer { position: absolute; left: 333px; bottom: 24px; width: 745px; border-top: 1px solid #15151533; padding-top: 13px; display: flex; justify-content: space-between; align-items: center; font: 11px 'DM Mono', monospace; letter-spacing: .7px; }
+    .disciplines { display: flex; gap: 15px; align-items: center; }
+    .disciplines b { color: #bd1f3a; font-size: 13px; font-weight: 400; }
+    .web { font-size: 11px; letter-spacing: -.25px; }
+    .art-label { position: absolute; bottom: 26px; right: 28px; width: 370px; display: flex; justify-content: space-between; font: 8px 'DM Mono', monospace; color: #f1eee6a8; letter-spacing: 1.3px; }
+    .banner::after { content: ''; position: absolute; left: 0; top: 0; width: 315px; height: 396px; background: radial-gradient(circle at 0% 0%, #d6ff3e55, transparent 80%); pointer-events: none; }
+  </style>
+</head>
+<body>
+  <main class="banner" aria-label="SF. / SWAROM FIRAGANNAVAR. Software with consequence. Backend systems. Developer tools. Real-time experiences.">
+    <svg class="art" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#222b24"/><stop offset="1" stop-color="#101a16"/></linearGradient>
+        <radialGradient id="glow"><stop stop-color="#a0cf4c" stop-opacity=".22"/><stop offset="1" stop-color="#d6ff3e" stop-opacity="0"/></radialGradient>
+        <linearGradient id="orb" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#f1ff9b"/><stop offset=".38" stop-color="#d6ff3e"/><stop offset=".75" stop-color="#9bd139"/><stop offset="1" stop-color="#568332"/></linearGradient>
+        <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff8b65"/><stop offset=".5" stop-color="#ef5147"/><stop offset="1" stop-color="#bd1f3a"/></linearGradient>
+        <clipPath id="orbClip"><circle cx="986" cy="302" r="132"/></clipPath>
+        <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".76" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      </defs>
+      <path d="M758 0H1200V630H758Z" fill="url(#panel)"/>
+      <circle cx="992" cy="299" r="290" fill="url(#glow)"/>
+      <g stroke="#f1eee6" stroke-opacity=".055" stroke-width="1">
+        <path d="M810 0V630M870 0V630M930 0V630M990 0V630M1050 0V630M1110 0V630M1170 0V630"/>
+        <path d="M758 110H1200M758 170H1200M758 230H1200M758 290H1200M758 350H1200M758 410H1200M758 470H1200M758 530H1200"/>
+      </g>
+      <g fill="none" stroke="#d6ff3e">
+        <circle cx="986" cy="302" r="194" stroke-opacity=".18"/>
+        <circle cx="986" cy="302" r="210" stroke-opacity=".07"/>
+        <ellipse cx="986" cy="302" rx="213" ry="77" transform="rotate(-40 986 302)" stroke-opacity=".4"/>
+      </g>
+      <circle cx="986" cy="302" r="132" fill="url(#orb)"/>
+      <g clip-path="url(#orbClip)" fill="none" stroke="#253b25" stroke-opacity=".43" stroke-width="1.1">
+        <ellipse cx="986" cy="302" rx="30" ry="132" transform="rotate(27 986 302)"/>
+        <ellipse cx="986" cy="302" rx="67" ry="132" transform="rotate(27 986 302)"/>
+        <ellipse cx="986" cy="302" rx="106" ry="132" transform="rotate(27 986 302)"/>
+        <ellipse cx="986" cy="302" rx="132" ry="29" transform="rotate(27 986 302)"/>
+        <ellipse cx="986" cy="302" rx="132" ry="69" transform="rotate(27 986 302)"/>
+        <ellipse cx="986" cy="302" rx="132" ry="108" transform="rotate(27 986 302)"/>
+        <path d="M850 233L1122 371M1054 165L918 439"/>
+      </g>
+      <ellipse cx="986" cy="302" rx="218" ry="68" transform="rotate(-40 986 302)" fill="none" stroke="#e1ff80" stroke-width="1.5" stroke-dasharray="380 580"/>
+      <circle cx="831" cy="412" r="21" fill="url(#red)"/>
+      <circle cx="1129" cy="181" r="5" fill="#f1eee6"/>
+      <path d="M779 140V154M772 147H786M1150 501V515M1143 508H1157" stroke="#f1eee6" stroke-opacity=".4"/>
+      <rect width="1200" height="630" filter="url(#grain)" opacity=".035" style="mix-blend-mode:multiply"/>
+    </svg>
+    <header>
+      <div class="name-label">SF. / SWAROM FIRAGANNAVAR</div>
+    </header>
+    <h1>Software with<br><em>consequence.</em></h1>
+    <p class="intro">Backend systems. Developer tools. Real-time experiences.</p>
+    <footer><span>ENGINEERING / DESIGN / PRODUCT</span><span class="web">swaromportfolio.netlify.app</span></footer>
+  </main>
+</body>
+</html>
