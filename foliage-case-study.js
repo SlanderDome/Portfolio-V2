@@ -136,13 +136,13 @@
       history.replaceState(state,'',url); hide();
     }
   }
-  window.portfolioCaseStudy = {open(key, control) {
+  window.portfolioCaseStudy = {open(key, control, startSlide = 1) {
     if (!decks[key] || dialog.open) return;
     projectKey = key; deck = decks[key]; index = -1;
-    trigger = control?.closest?.('[data-project]')?.querySelector('.project-open') || document.querySelector(`[data-project="${key}"] .project-open`);
+    trigger = control || document.querySelector(`[data-project="${key}"] .project-open`);
     hasPortfolioOrigin = true;
     session = `${Date.now()}-${Math.random()}`; depth = 0;
-    navigate(0);
+    navigate(Number.isFinite(startSlide) ? Math.max(0, Math.min(deck.slides.length - 1, Math.trunc(startSlide) - 1)) : 0);
   }};
   window.foliageCaseStudy = {open: control => window.portfolioCaseStudy.open('foliage', control)};
   prev.addEventListener('click', () => navigate(index - 1));
