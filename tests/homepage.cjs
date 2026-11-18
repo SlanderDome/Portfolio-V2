@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:390,height:844});
     await page.goto(base + '/?ref=keep#work');
     // Each resource opens its own destination without invoking the case viewer.
-    await page.context().route(/https:\/\/(github\.com|foliagecare\.netlify\.app|judgement-x0wl\.onrender\.com|reconcilely\.netlify\.app)\//, route => route.fulfill({status:200,contentType:'text/html',body:'Resource navigation verified'}));
+    await page.context().route(/https:\/\/(github\.com|foliagecare\.netlify\.app|judgement-production-893f3c78\.up\.railway\.app|reconcilely\.netlify\.app)\//, route => route.fulfill({status:200,contentType:'text/html',body:'Resource navigation verified'}));
     for (const key of ['foliage','judgement','reconcile']) {
       const card = page.locator(`[data-project="${key}"]`);
       assert.equal(await card.locator('.project-actions a').count(), 3);

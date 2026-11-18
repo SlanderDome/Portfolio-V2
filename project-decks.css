@@ -31,7 +31,7 @@
 .jd-opening{display:grid;grid-template-columns:1.2fr .8fr;gap:24px 5vw}
 .jd-opening h2{font-size:clamp(62px,7vw,104px)}
 .jd-opening .fc-photo{grid-column:1/-1}
-.jd-opening .fc-photo img{max-height:390px}
+.jd-opening .fc-photo img{max-width:693px;max-height:none;height:auto;margin-inline:auto;clip-path:inset(0 1.5% 0 0)}
 .jd-opening-note{align-self:end;font:24px/1.4 var(--serif);margin:0 0 10px;max-width:330px;color:var(--fc-secondary)}
 .jd-opening .fc-margin-note{grid-column:1/-1;margin:0}
 .jd-room-layout{display:grid;grid-template-columns:1fr 1fr;gap:5vw;margin-top:36px;align-items:center}

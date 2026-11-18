@@ -56,6 +56,10 @@ const server = http.createServer((req, res) => {
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto(base + '/#building');
     assert.equal(await page.locator('.building-trace').evaluate(el => getComputedStyle(el).animationName), 'none');
+    await page.locator('.theme-toggle').click();
+    assert.ok(await page.locator('body').evaluate(el => el.classList.contains('night')));
+    await page.locator('#building').scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(output, '320-night-section.png')});
     assert.deepEqual(errors, []);
     console.log(`PASS: ForgeDeploy navigation, history, focus, screenshots, responsive layouts and reduced motion. Screenshots: ${output}`);
   } finally { await browser.close(); server.close(); }
