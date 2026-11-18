@@ -2,7 +2,7 @@
 
 ## Visual system
 
-- Preserve the portfolio’s `DM Sans`, `DM Mono`, and `Playfair Display` typography, paper/ink palette, grain, project placeholders, and editorial character.
+- Preserve the portfolio’s `DM Sans`, `DM Mono`, and `Lora` typography, paper/ink palette, grain, project placeholders, and editorial character.
 - Give each project a restrained accent: Foliage acid green/forest, Judgement felt green/aged gold, Reconcile.ly terracotta/ledger cream.
 - Use screenshots as editorial images, not card thumbnails. Text-bearing screenshots use `object-fit: contain`; decorative crops are permitted only when no interface content is lost.
 - Use one dominant idea per slide, asymmetrical grids, generous margins, and no repeated “heading plus three cards” composition.

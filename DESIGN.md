@@ -9,7 +9,7 @@ Quietly confident, editorial, experimental, technically meticulous. Preserve the
 
 ## Typography
 - **DM Sans:** body, navigation-adjacent UI, sans display headings; weights 400/500/700.
-- **Playfair Display:** selective italic emphasis, poster titles, note headings; weights 600/700.
+- **Lora:** selective italic emphasis, poster titles, note headings; weights 600/700.
 - **DM Mono:** metadata, technical labels, actions; weights 400/500.
 - Load through Google Fonts with `display=swap`; serif/sans-serif/monospace fallbacks.
 - Display: fluid 43–88px hero, 42–78px section headings, 42–70px project titles. Short display lines use about 1.02–1.15 line height; body uses 1.6–1.7.
