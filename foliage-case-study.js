@@ -103,7 +103,7 @@
       dialog.dataset.project = project;
       dialog.setAttribute('aria-label', deck.name + ' case study');
       dialog.querySelector('.fc-brand').innerHTML = `<span class="fc-brand-mark" aria-hidden="true">${deck.mark}</span><span>${deck.name}<small>${deck.journal} / CASE STUDY ${deck.number}</small></span>`;
-      dialog.querySelector('.fc-chrome nav').innerHTML = `<a href="${deck.github}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${deck.live}" target="_blank" rel="noreferrer">Live ↗</a>`;
+      dialog.querySelector('.fc-chrome nav').innerHTML = `${deck.github ? `<a href="${deck.github}" target="_blank" rel="noreferrer">GitHub ↗</a>` : ''}${deck.live ? `<a href="${deck.live}" target="_blank" rel="noreferrer">Live ↗</a>` : ''}`;
       dialog.querySelector('.fc-close').setAttribute('aria-label','Close ' + deck.name + ' case study');
       dialog.querySelector('.fc-progress').setAttribute('aria-valuemax',String(deck.slides.length));
       const raw = url.searchParams.get('slide');
