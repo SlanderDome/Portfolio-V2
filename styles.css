@@ -42,8 +42,17 @@ body.night .hero::before{background:radial-gradient(ellipse 54% 64% at 78% 44%,r
 body.night .hero-atmosphere::before{opacity:.3}
 body.night .hero-sheet{background:rgba(38,50,40,.85);border-color:rgba(241,238,230,.18);color:rgba(213,226,204,.45)}
 @media(max-width:1050px){.hero{grid-template-columns:minmax(0,1fr) 260px}.hero-sheet--specimen{left:49%;width:154px}.hero-sheet--ledger{display:none}}
-@media(max-width:720px){.hero{display:flex}.hero::before{background:radial-gradient(ellipse 72% 54% at 76% 55%,rgba(142,165,136,.22),transparent 80%),linear-gradient(125deg,rgba(246,241,229,.55),transparent 80%)}.hero-atmosphere::before{opacity:.14;mask-image:linear-gradient(180deg,transparent 25%,#000 62%,transparent)}.hero-discipline{font-size:10px;margin-top:24px}.hero-sheet--specimen{left:auto;right:43%;top:35%;width:132px}.hero-sheet--ledger{display:none}.hero-preview{width:min(78%,360px);margin-right:7px}}
-@media(max-width:390px){.hero-preview{width:82%}.hero-sheet--specimen{right:45%;width:118px}}
+@media(max-width:720px){
+  .hero{display:flex;gap:20px;padding:28px 0 32px}
+  .hero::before{background:radial-gradient(ellipse 72% 54% at 76% 55%,rgba(142,165,136,.22),transparent 80%),linear-gradient(125deg,rgba(246,241,229,.55),transparent 80%)}
+  .hero::after{display:none}
+  .hero-atmosphere::before{opacity:.1;mask-image:linear-gradient(180deg,transparent 25%,#000 62%,transparent)}
+  .hero-sheet{display:none}
+  .hero-kicker{margin:0 0 16px}
+  .hero-discipline{font-size:10px;margin-top:20px}
+  .hero-preview{width:min(76%,300px);margin:0 4px 4px 0;padding:6px;transform:rotate(1deg);box-shadow:5px 7px 0 #151515}
+  .hero-bottom{gap:12px}
+}
 .poster-atmosphere .scene-detail{stroke-width:1.5;opacity:.8}
 .poster-atmosphere .scene-card{opacity:var(--scene-progress,1);transform-box:fill-box;transform-origin:center}
 .poster-atmosphere .scene-card-left{transform:translateX(calc((1 - var(--scene-progress,1)) * -35px)) rotate(calc((1 - var(--scene-progress,1)) * -12deg))}
